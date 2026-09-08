@@ -1,0 +1,52 @@
+.activity-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  border-left: 6px solid #2f6f62;
+  border-radius: 4px 18px 18px 4px;
+}
+
+.activity-icon {
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
+.activity-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #22302b;
+}
+
+.tap-hint {
+  font-size: 14px;
+  color: #6b7873;
+  margin: 2px 0 0 0;
+}
+
+.count-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.decrement-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #eef1f0;
+  color: #22302b;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
