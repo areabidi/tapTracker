@@ -59,6 +59,9 @@ function Home() {
       <h1>Good afternoon 👋</h1>
       <h2>Your routines</h2>
 
+      <button className="scan-btn" onClick={handleScan}>
+        📡 Scan NFC Tag
+      </button>
       {scanStatus && <p className="tap-hint">{scanStatus}</p>}
 
       {activities.map((activity) => (
