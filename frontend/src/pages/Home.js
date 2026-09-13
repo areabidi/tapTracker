@@ -4,16 +4,21 @@ import ActivityCard from "../components/ActivityCard";
 import MoodPicker from "../components/MoodPicker";
 import "./Home.css";
 
-const initialActivities = [
-  { id: 1, name: "Walk", icon: "🚶", type: "boolean", count: 0, nfcTagId: "04:ea:e5:31:dc:2a:81" },
-  { id: 2, name: "Water", icon: "💧", type: "number", count: 0, nfcTagId: null },
-  { id: 3, name: "Mood", icon: "🙂", type: "mood", count: 0, nfcTagId: null },
-];
-
-function Home() {
+// activities and setActivities now come from App.js as props,
+// instead of being created here with their own useState.
+function Home({ activities, setActivities }) {
   const [selectedActivity, setSelectedActivity] = useState(null);
-  const [activities, setActivities] = useState(initialActivities);
   const [scanStatus, setScanStatus] = useState("");
+
+  function handleCardClick(activity) {
+    if (selectedActivity?.id === activity.id) {
+      setSelectedActivity(null);
+    } else {
+      setSelectedActivity(activity);
+    }
+
+    incrementActivity(activity.id);
+  }
 
   function incrementActivity(activityId) {
     setActivities((prev) =>
@@ -23,7 +28,9 @@ function Home() {
 
   function handleDecrement(activityId) {
     setActivities((prev) =>
-      prev.map((a) => (a.id === activityId && a.count > 0 ? { ...a, count: a.count - 1 } : a))
+      prev.map((a) =>
+        a.id === activityId && a.count > 0 ? { ...a, count: a.count - 1 } : a
+      )
     );
   }
 
@@ -70,9 +77,10 @@ function Home() {
             icon={activity.icon}
             name={activity.name}
             count={activity.count}
-            onClick={() => setSelectedActivity(activity)}
+            onClick={() => handleCardClick(activity)}
             onDecrement={() => handleDecrement(activity.id)}
           />
+
           {selectedActivity?.id === activity.id && activity.type === "mood" && (
             <MoodPicker />
           )}
